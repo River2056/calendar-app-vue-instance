@@ -1,0 +1,61 @@
+/* 1st try */
+.calendar-table table {
+    border: 1px solid #616161;
+    width: 95%;
+    height: 20vh;
+}
+
+.calendar-table table th, td {
+    border-left: 1px solid #616161;
+    border-right: 1px solid #616161;
+    word-wrap: break-word;
+    text-align: center;
+}
+
+.calendar-table table td p {
+    word-break: break-all;
+    margin: 10px;
+}
+
+.calendar-table table th {
+    background-color: #303030;
+    font-weight: normal;
+}
+
+.calendar-table table td {
+    background-color: #494949;
+    color: #494949;
+}
+
+
+
+/* 2nd try */
+.calendar-table-container {
+    width: 100%;
+}
+
+.calendar-table-container .table-entity {
+    display: inline-block;
+    width: calc(100% / 7.2);
+}
+
+.calendar-table-container .table-entity .table-title {
+    background-color: #303030;
+    text-align: center;
+}
+
+.calendar-table-container .table-entity .table-cell {
+    background-color: #494949;
+    height: 10%;
+}
+
+.addForm {
+    /* width: 20.5rem; */
+    position: absolute;
+    top: 58%;
+    left: 35%;
+    background-color: #FFF;
+    color: #494949;
+    padding: 20px;
+    border-radius: 20px;
+}

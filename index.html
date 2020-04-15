@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar App</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/fontawesome-all.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+    <div id="app">
+        <div class="calendar-table-container">
+           <div v-for="day in 7" class="table-entity">
+                <h6>{{ getDays(day) }}</h6>
+                <p>
+                    <div class="event-block"></div>
+                    <template v-for="event in events">
+                        <div v-if="event.day === day" class="event-block" :class="classObject(event.type)">
+                            {{ fitWordBox(event.title) }} / {{ event.type }}
+                            <br />
+                            <a @click="editEvent(event.id)">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a @click="deleteEvent(event.id)">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </div>
+                    </template>
+                </p>
+           </div>
+        </div>
+
+        <div class="addForm">
+            <div class="container">
+                <form class="form-group" @submit.prevent="pushToEvents">
+                    <input class="form-control" type="text" placeholder="Enter event" v-model="newTitle" />
+                    <select class="form-control" v-model="newDate">
+                        <option v-for="day in 7" :value="day">{{ getDays(day) }}</option>
+                    </select>
+                    <select class="form-control" v-model="newType">
+                        <option v-for="t in type" :value="t">{{ t }}</option>
+                    </select>
+                    <button class="form-control btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/all.min.js"></script>
+    <script src="js/vue.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
