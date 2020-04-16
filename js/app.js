@@ -1,7 +1,7 @@
 const app = new Vue({
     el: '#app',
     data: {
-        id: 1,
+        id: 0,
         events: [],
         type: [
             'house-work',
@@ -48,14 +48,20 @@ const app = new Vue({
         fitWordBox: function (title) {
             return title.length > 15 ? title.slice(0, 15) + '...' : title
         },
+        generateNewId() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+        },
         pushToEvents() {
+            this.id = this.generateNewId();
             const newEvent = {
                 id: this.id,
                 title: this.newTitle,
                 type: this.newType,
                 day: this.newDate
             };
-            ++this.id;
             this.events.push(newEvent);
             this.newTitle = '';
             this.newDate = 1;
@@ -70,6 +76,9 @@ const app = new Vue({
             this.newDate = event.day;
             this.newType = event.type;
             this.events = this.events.filter(e => e.id !== id);
+        },
+        clearAllEvents() {
+            this.events = [];
         }
     },
     watch: {
